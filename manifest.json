@@ -1,6 +1,6 @@
 ﻿{
 	"name": "Chrary",
-	"version": "1.0",
+	"version": "1.0.2",
 	"description": "搜索豆瓣书籍信息，并且查找本地图书馆及在线资源.",
 	"background":{
 		"page":"background.html"

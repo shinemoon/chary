@@ -8,7 +8,9 @@ var libRes = '';
 var libDefaultConfigs = [
 	//杭州图书馆
 	{name:'杭州市图书馆', enable:true },
-	{name:'首都图书馆', enable:false }
+	{name:'首都图书馆', enable:false },
+	{name:'成都图书馆', enable:false },
+	{name:'中国国家图书馆', enable:false }
 ];
 
 var libConfigs = [];
@@ -60,7 +62,7 @@ function searchLib(libname, criterion, type) {
 			var Url = (type=='ISBN')?searchISBNUrl:searchNameUrl;
 			$.get(Url, function(data){
 				stubDiv.html(data);
-				console.log(stubDiv.find('#search_meta').text());
+				//console.log(stubDiv.find('#search_meta').text());
 				mres = stubDiv.find('#search_meta').text().match(/检索到.*?(\d\S*).*/);
 				if(mres!=null && mres[1]!='0' ) res.push({lib:'杭州市图书馆',count:mres[1],link:searchISBNUrl}); 
 				else nameLinkArray.push({nameLink:searchNameUrl});
@@ -84,7 +86,7 @@ function searchLib(libname, criterion, type) {
 			var Url = (type=='ISBN')?searchISBNUrl:searchNameUrl;
 			$.get(Url, function(data){
 				stubDiv.html(data);
-				console.log(stubDiv.find('#search_info').text());
+				//console.log(stubDiv.find('#search_info').text());
 				mres = stubDiv.find('#search_info').text().match(/共有: .*?(\d\S*)条.*/);
 				if(mres!=null && mres[1]!='0' ) res.push({lib:'首都图书馆',count:mres[1],link:searchISBNUrl}); 
 				else nameLinkArray.push({nameLink:searchNameUrl});
@@ -92,8 +94,48 @@ function searchLib(libname, criterion, type) {
 			});
 			break;
 		};
+	//成都图书馆
+		case '成都图书馆':{
+			var searchISBNUrl;
+			var searchNameUrl;
+			//Refine ISBN id
+			searchISBNUrl = "http://opac.cdclib.org/opac/search?&q="+criterion[0]+"&searchWay=isbn&searchSource=reader";
+			searchNameUrl = "http://opac.cdclib.org/opac/search?searchWay=title&q="+criterion[1]+"&searchSource=reader&booktype=&scWay=full&marcformat=&sortWay=score&sortOrder=desc&startPubdate=&endPubdate=&rows=10&hasholding=1";
+			//search based on names:
+			var Url = (type=='ISBN')?searchISBNUrl:searchNameUrl;
+			$.get(Url, function(data){
+				stubDiv.html(data);
+				console.log(stubDiv.find('#search_meta').text());
+				mres = stubDiv.find('#search_meta').text().match(/检索到.*?(\d\S*).*/);
+				if(mres!=null && mres[1]!='0' ) res.push({lib:'成都图书馆',count:mres[1],link:searchISBNUrl}); 
+				else nameLinkArray.push({nameLink:searchNameUrl});
+				checkLibBusy();
+			});
+			break;
+		};
+	//中国国家图书馆
+		case '中国国家图书馆':{
+			var searchISBNUrl;
+			var searchNameUrl;
+			//Refine ISBN id
+			var ISBNraw = criterion[0];
+			var ISBNnew = criterion[0].substr(0,3) + "-" + criterion[0].substr(3,1) + "-"  +criterion[0].substr(4,4) + "-" + criterion[0].substr(8,4) + "-" + criterion[0].substr(12,1);
+			searchISBNUrl = "http://find.nlc.gov.cn/search/doSearch?query="+ISBNnew+"&secQuery=&actualQuery="+ISBNnew+"%20mediatype%3A(0%20OR%201%20OR%202)%20%20identifer%3A("+ISBNnew+")%20&searchType=2&docType=%E5%9B%BE%E4%B9%A6&mediaTypes=0,1,2&targetField=identifer&isGroup=isGroup&targetFieldLog=ISBN&orderBy=RELATIVE"
+			searchNameUrl = "http://find.nlc.gov.cn/search/doSearch?query="+criterion[1]+"&secQuery=&actualQuery="+criterion[1]+"%20mediatype%3A(0%20OR%201%20OR%202)%20%20alltitle%3A("+criterion[1]+")%20&searchType=2&docType=%E5%9B%BE%E4%B9%A6&mediaTypes=0,1,2&targetField=alltitle"
+			//search based on names:
+			var Url = (type=='ISBN')?searchISBNUrl:searchNameUrl;
+			$.get(Url, function(data){
+				stubDiv.html(data);
+				console.log(stubDiv.find('#totalCnt').text());
+				mres = stubDiv.find('#totalCnt').text();
+				console.log(mres);
+				if(mres!=null && mres!='0' ) res.push({lib:'中国国家图书馆',count:mres[1],link:searchISBNUrl}); 
+				else nameLinkArray.push({nameLink:searchNameUrl});
+				checkLibBusy();
+			});
+			break;
+		};
 
-	//浙江图书馆
 		default:
 	}
 }

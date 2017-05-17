@@ -1,2 +1,1 @@
-# chary
-chrome extension for douban book searching and some library checking
+2015.04.11: 应求添加国图
