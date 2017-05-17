@@ -1,0 +1,207 @@
+body {
+	height:40px;
+}
+.icon {
+	background-image:url('/images/glyphicons-halflings.png');
+	display: inline-block;
+	width: 14px;
+	height: 14px;
+	margin-right: .1em;
+	line-height: 14px;
+	vertical-align: text-top;
+	background-position: 14px 14px;
+	background-repeat: no-repeat;
+	margin-top: 1px;
+	cursor:pointer;
+}
+
+.icon.icon-invalid {
+	opacity:0.5;
+	cursor:default;
+}
+
+.icon-search {
+	background-position: -48px 0px;
+}
+.icon-clean {
+	background-position: -216px -24px;
+}
+.icon-config {
+	background-position: -360px -144px;
+}
+.icon-return {
+	background-position: -432px -72px;
+}
+
+.icon-info {
+	background-position: -120px -96px;
+}
+
+
+.icon-prev {
+	background-position: -240px -72px;
+}
+.icon-next {
+	background-position: -336px -72px;
+}
+
+
+
+.icon-loadding {
+	background-position: -48px -24px;
+	cursor:default;
+	opacity:0.5;
+}
+
+input {
+	padding-left:5px;
+}
+input.busy {
+	background-color:rgba(200,100,50,0.2);
+}
+
+td div.bookname {
+	height:18px;
+	width:320px;
+	overflow:hidden;
+	white-space:nowrap;
+ 	text-overflow:ellipsis;
+	font-size:11px;
+	color:green;
+	cursor:pointer;
+	margin-top:6px;
+	margin-left:5px;
+}
+
+tr:nth-child(odd) {
+	background:#eee;
+}
+
+tr:hover {
+	background:#abcdef;
+}
+
+div#control-p {
+	opacity:0.8;
+	padding-top:20px;
+	padding-bottom:10px;
+}
+
+.left {
+	float:left;
+}
+
+
+.right {
+	float:right;
+}
+
+div#bookdetails {
+	margin-top:20px;
+}
+
+.detailinfo  {
+	font-size:12px;
+	width:200px;
+	overflow:hidden;
+	white-space:nowrap;
+ 	text-overflow:ellipsis;
+	height:20px;
+	padding-top:10px;
+}
+
+.detaillibinfo {
+	font-size:12px;
+	height:20px;
+	padding-top:10px;
+	margin-top:15px;
+}
+
+.detailinfo.title  {
+	padding-top:10px;
+	padding-bottom:5px;
+	margin-bottom:10px;
+	text-align:center;
+	font-size:14px;
+	width:330px;
+	background:rgba(100,100,100,0.1);
+	color:green;
+	padding-top:10px;
+	cursor:pointer;
+}
+
+.detailinfo span, .detaillibinfo span{
+	padding-top:2px;
+	padding-bottom:2px;
+	padding-left:5px;
+	padding-right:5px;
+}
+
+#bookdetails div#control-p {
+	margin-top:10px;
+	padding-bottom:20px;
+}
+
+.label {
+	background:grey;
+	color:white;
+	margin-right:8px;
+}
+
+img {
+	box-shadow:2px 2px 5px #8b9699;
+}
+
+.introsec {
+	height:48px;
+	width:320px;
+	overflow:hidden;
+ 	text-overflow:ellipsis;
+	font-size:11px;
+	color:grey;
+	cursor:pointer;
+	margin-top:20px;
+	background:rgba(200,200,200,0.1);
+	padding:5px;
+	border-radius:3px;
+	line-height:15px;
+}
+
+#config {
+	margin-top:30px;
+}
+
+.configline {
+	width:280px;
+	margin-top:10px;
+	margin-left:20px;
+	padding-top:5px;
+	padding-bottom:5px;
+}
+.configline:nth-child(odd) {
+	background:rgba(100,100,100,0.1);
+}
+
+.configline input {
+	height:10px;
+	width:10px;
+}
+
+.configname {
+	margin-left:15px;
+	font-size:12px;
+}
+
+.logo {
+	font-size:12px;
+	color:grey;
+	font-family:arial;
+}
+
+.author {
+	font-size:12px;
+	color:darkgrey;
+	font-family:arial;
+	margin-left:3px;
+	cursor:pointer;
+}
